@@ -14,7 +14,7 @@
 *.dll
 
 # Fortran module files
-*.mod
+
 
 # Compiled Static libraries
 *.lai
@@ -26,3 +26,5 @@
 *.exe
 *.out
 *.app
+
+build

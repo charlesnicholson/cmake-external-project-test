@@ -1,9 +1,11 @@
-cmake_minimum_required(VERSION 3.0.0)
+cmake_minimum_required(VERSION 3.1)
 project(hidapi-test)
 
 ################ hidapi
 
 set(HIDAPI_ROOT thirdparty/hidapi)
+set(HIDAPI_LIB_DIR ${HIDAPI_ROOT}/bin/lib)
+set(HIDAPI_INCLUDE_DIR ${HIDAPI_ROOT}/bin/include)
 
 include(ExternalProject)
 
@@ -17,7 +19,8 @@ ExternalProject_Add(hidapi_external
                     SOURCE_DIR ${HIDAPI_ROOT}/src/hidapi
                     INSTALL_DIR ${HIDAPI_ROOT}/bin
                     CONFIGURE_COMMAND ./configure --prefix=<INSTALL_DIR>
-                    BUILD_COMMAND make)
+                    BUILD_COMMAND make
+                    BUILD_BYPRODUCTS ${HIDAPI_LIB_DIR}/libhidapi.a)
 
 # hidapi requires an initial execution of "./bootstrap" to run autoreconf
 ExternalProject_Add_Step(hidapi_external
@@ -26,9 +29,6 @@ ExternalProject_Add_Step(hidapi_external
                          DEPENDEES download
                          DEPENDERS configure
                          WORKING_DIRECTORY ${HIDAPI_ROOT}/src/hidapi)
-
-set(HIDAPI_LIB_DIR ${HIDAPI_ROOT}/bin/lib)
-set(HIDAPI_INCLUDE_DIR ${HIDAPI_ROOT}/bin/include)
 
 add_library(libhidapi STATIC IMPORTED)
 set_target_properties(libhidapi PROPERTIES IMPORTED_LOCATION ${HIDAPI_LIB_DIR}/libhidapi.a)
