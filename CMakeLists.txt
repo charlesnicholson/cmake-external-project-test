@@ -3,7 +3,7 @@ project(hidapi-test)
 
 ################ hidapi
 
-set(HIDAPI_ROOT thirdparty/hidapi)
+set(HIDAPI_ROOT ${CMAKE_BINARY_DIR}/thirdparty/hidapi)
 set(HIDAPI_LIB_DIR ${HIDAPI_ROOT}/bin/lib)
 set(HIDAPI_INCLUDE_DIR ${HIDAPI_ROOT}/bin/include)
 
