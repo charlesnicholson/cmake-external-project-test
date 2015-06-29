@@ -1,6 +1,8 @@
 cmake_minimum_required(VERSION 3.2)
 project(hidapi-test)
 
+set(CMAKE_CXX_STANDARD 11)
+
 ################ hidapi
 
 set(HIDAPI_ROOT ${CMAKE_BINARY_DIR}/thirdparty/hidapi)

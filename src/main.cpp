@@ -5,7 +5,7 @@ int main()
 {
     hid_init();
 
-    struct hid_device_info *hid_dev = hid_enumerate(0, 0);
+    auto hid_dev = hid_enumerate(0, 0);
     while (hid_dev) {
         std::printf("HID device: VID=%x PID=%x Path=%s Product string: \"%S\"\n",
                     hid_dev->vendor_id,
