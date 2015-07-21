@@ -38,8 +38,10 @@ add_dependencies(libhidapi hidapi_external)
 
 ################ test app
 
+find_library(IOKIT NAMES IOKit)
+find_library(COREFOUNDATION NAMES CoreFoundation)
+
 include_directories(${HIDAPI_INCLUDE_DIR})
-set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -framework IOKit -framework CoreFoundation")
 add_executable(hidapi-test src/main.cpp)
-target_link_libraries(hidapi-test libhidapi)
+target_link_libraries(hidapi-test ${IOKIT} ${COREFOUNDATION} libhidapi)
 
